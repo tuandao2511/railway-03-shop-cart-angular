@@ -1,0 +1,66 @@
+<h1 align="center" class="display-4">Sign Up</h1>
+<form style="width: 40%;" class="mr-auto ml-auto" #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label><strong>Email address</strong></label>
+        <input type="email" class="form-control" name="email" [(ngModel)]="user.email" #email = "ngModel" required autofocus email>
+        <div *ngIf="email.invalid && email.touched">
+            <div *ngIf="email.errors.required">
+                <p class="text text-danger">Email is required</p>
+            </div>
+            <div *ngIf="email.errors.email">
+                <p class="text text-danger">Invalid email</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label><strong>Name</strong></label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="user.name" #name = "ngModel" required minlength="6">
+        <div *ngIf="name.invalid && name.touched">
+            <div *ngIf="name.errors.required">
+                <p class="text text-danger">Name is required.</p>
+            </div>
+            <div *ngIf="name.errors.minlength">
+                <p class="text text-danger">Name must be at least 6 characters long.</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label><strong>Password</strong></label>
+        <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password = "ngModel" minlength="6">
+        <div *ngIf="password.invalid && password.touched">
+            <div *ngIf="password.errors.required">
+                <p class="text text-danger">Password is required.</p>
+            </div>
+            <div *ngIf="password.errors.minlength">
+                <p class="text text-danger">Password must be at least 6 characters long.</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label><strong>Phone</strong></label>
+        <input type="tel" class="form-control" name="phone" [(ngModel)]="user.phone" #phone = "ngModel" minlength="10" required pattern="\d{10}">
+        <div *ngIf="phone.invalid && phone.touched">
+            <div *ngIf="phone.errors.required">
+                <p class="text text-danger">Phone is required.</p>
+            </div>
+            <div *ngIf="phone.errors.minlength">
+                <p class="text text-danger">Phone must be at least 10 characters long.</p>
+            </div>
+            <div *ngIf="phone.invalid">
+                <p class="text text-danger">Wrong phone</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label><strong>Address</strong></label>
+        <input type="text" class="form-control" name="address" [(ngModel)]="user.address" #address = "ngModel" required>
+        <div *ngIf="address.invalid && address.touched">
+            <div *ngIf="address.errors.required">
+                <p class="text text-danger">Address is required</p>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-primary" style="width: 100%;" [disabled]="form.form.invalid">Sign Up</button>
+    </div>
+</form>
